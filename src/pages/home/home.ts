@@ -22,6 +22,7 @@ export class HomePage {
   ionViewWillEnter() {
     this._imgService.getRandomImage()
       .then((url) => this.setImgUrl(url))
+      .then(() => this._imgService.getRandomImage())
       .then((url) => this._captionService.getImgCaption(url))
       .then((caption) => this.setCaption(caption));
   }

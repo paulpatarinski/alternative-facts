@@ -1,12 +1,17 @@
 <ion-header>
   <ion-navbar>
     <ion-title>
-      Ionic Blank
+      Alternative Fact
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  <img [src]="randomImgUrl">
-  <p>{{caption}}</p>
+<ion-content padding [ngStyle]="{'background-image': 'url(' + randomImgUrl + ')'}">
+  <ion-grid>
+    <ion-row>
+      <ion-col class="caption" offset-10 width-80 center>
+        <span>{{caption}}</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>

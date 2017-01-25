@@ -5,7 +5,6 @@ import { HomePage } from '../pages/home/home';
 import { CaptionService } from '../providers/caption-service';
 import { ImageService } from '../providers/image-service';
 
-
 @NgModule({
   declarations: [
     MyApp,
