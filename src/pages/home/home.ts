@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform} from 'ionic-angular';
 import { CaptionService } from '../../providers/caption-service';
 import { ImageService } from '../../providers/image-service';
 
@@ -11,26 +11,24 @@ import { ImageService } from '../../providers/image-service';
 export class HomePage {
   private _captionService: CaptionService;
   private _imgService: ImageService;
-  randomImgUrl: string;
   caption: string;
+  deviceHeight : number;
+  deviceWidth : number;
 
-  constructor(public navCtrl: NavController, captionService: CaptionService, imgService: ImageService) {
+  constructor(public navCtrl: NavController, captionService: CaptionService, imgService: ImageService, platform : Platform) {
     this._captionService = captionService;
     this._imgService = imgService;
+
+    platform.ready().then(() => {
+      this.deviceHeight = platform.height();
+      this.deviceWidth = platform.width();
+    });
   }
 
   ionViewWillEnter() {
     this._imgService.getRandomImage()
-      .then((url) => this.setImgUrl(url))
-      .then(() => this._imgService.getRandomImage())
       .then((url) => this._captionService.getImgCaption(url))
       .then((caption) => this.setCaption(caption));
-  }
-
-  setImgUrl(imgUrl) {
-    this.randomImgUrl = imgUrl;
-
-    return imgUrl;
   }
 
   setCaption(txt) {
