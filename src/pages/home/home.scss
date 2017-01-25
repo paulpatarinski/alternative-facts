@@ -17,6 +17,10 @@ page-home{
         ion-row {
             height: 100%;
         }
+
+        ion-col{
+            padding : 0;
+        }
     }
 
     .toolbar-background {
@@ -28,18 +32,28 @@ page-home{
         background-size: 100% 100%;
     }
 
-    .caption{
+    .spinner-container {
+        margin-top: 15px;
+        line-height: normal;
+
+        span {
+            font-weight: 200;
+            text-transform: uppercase;
+        }
+    }
+
+    .caption-container{
         height : 80px;
         padding: 0;
-        line-height: 80px;
         margin-top: 70vh;
         background: white;
         opacity: 0.8;
         border-radius: 2px;
         text-align: center;
         font-size: 20px;
+        line-height: 80px;
 
-        span {
+        .caption {
             display: inline-block;
             width: 100%;
             max-height: 100%;

@@ -9,8 +9,17 @@
 <ion-content padding [ngStyle]="{'background-image': 'url(https://unsplash.it/' + deviceWidth + '/' + deviceHeight + '/?random)'}">
   <ion-grid>
     <ion-row>
-      <ion-col class="caption" offset-10 width-80 center>
-        <span>{{caption}}</span>
+      <ion-col class="caption-container" offset-10 width-80 center>
+        <div class="spinner-container" *ngIf="loading">
+          <div>
+            <span>Loading fact</span>
+          </div>
+           <div>
+            <ion-spinner name="circles"></ion-spinner>
+          </div>
+        </div>
+
+        <span *ngIf="!loading" class="caption">{{caption}}</span>
       </ion-col>
     </ion-row>
   </ion-grid>

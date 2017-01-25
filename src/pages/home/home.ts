@@ -14,8 +14,10 @@ export class HomePage {
   caption: string;
   deviceHeight : number;
   deviceWidth : number;
+  loading : boolean;
 
   constructor(public navCtrl: NavController, captionService: CaptionService, imgService: ImageService, platform : Platform) {
+    this.loading = true;
     this._captionService = captionService;
     this._imgService = imgService;
 
@@ -26,9 +28,18 @@ export class HomePage {
   }
 
   ionViewWillEnter() {
+    this.loading = true;
+    
     this._imgService.getRandomImage()
       .then((url) => this._captionService.getImgCaption(url))
-      .then((caption) => this.setCaption(caption));
+      .then((caption) => this.setCaption(caption))
+      .then(() => {
+        this.loading = false;
+      })
+      .catch((err) => {
+        console.log(err);
+        this.loading = false;
+      });
   }
 
   setCaption(txt) {
