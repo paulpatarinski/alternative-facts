@@ -16,7 +16,7 @@
     "publish:apk": "npm run ionic:release:build && npm run publish:sign:apk && npm run publish:zipalign",
     "postpublish:apk": "npm run install:apk",
     "ionic:release:build": "npm run build:prod && ionic build android --release",
-    "publish:sign:apk": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore /Users/paulpatarinski/Desktop/privateKey/my-release-key.keystore /Users/paulpatarinski/WIP/Personal/simpleToDo/platforms/android/build/outputs/apk/android-release-unsigned.apk -storepass password alias_name",
+    "publish:sign:apk": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore /Users/paulpatarinski/Desktop/privateKey/my-release-key.keystore ./platforms/android/build/outputs/apk/android-release-unsigned.apk -storepass password alias_name",
     "publish:zipalign": "zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk apps/alternative-facts.apk",
     "install:apk": "adb install apps/alternative-facts.apk",
     "upload" : "cd www && ionic upload"
