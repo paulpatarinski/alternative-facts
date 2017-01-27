@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController} from 'ionic-angular';
 import { GalleryPage } from '../gallery/gallery';
+import { AboutPage } from '../about/about';
 
 @Component({
   selector: 'page-home',
@@ -16,5 +17,9 @@ export class HomePage {
 
   navigateToGallery(){
    this.navCtrl.push(GalleryPage);
+  }
+
+   navigateToAbout(){
+   this.navCtrl.push(AboutPage);
   }
 }

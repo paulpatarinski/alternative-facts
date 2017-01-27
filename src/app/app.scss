@@ -14,3 +14,24 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+ #alt-fact{
+     ion-content {
+                 padding: 0;
+     }
+
+     .scroll-content {
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+    }
+
+     .back-button {
+        color : color($colors, secondary);
+    }
+
+    .back-button-ios {
+        ion-icon {
+            display: none;
+        }
+    }
+ }

@@ -3,6 +3,7 @@ import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { GalleryPage } from '../pages/gallery/gallery';
+import { AboutPage } from '../pages/about/about';
 import { CaptionService } from '../providers/caption-service';
 import { ImageService } from '../providers/image-service';
 
@@ -10,7 +11,8 @@ import { ImageService } from '../providers/image-service';
   declarations: [
     MyApp,
     HomePage,
-    GalleryPage
+    GalleryPage,
+    AboutPage
   ],
   imports: [
     IonicModule.forRoot(MyApp, {
@@ -25,7 +27,8 @@ import { ImageService } from '../providers/image-service';
   entryComponents: [
     MyApp,
     HomePage,
-    GalleryPage
+    GalleryPage,
+    AboutPage
   ],
   providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, ImageService, CaptionService]
 })

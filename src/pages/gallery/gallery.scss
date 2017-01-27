@@ -3,15 +3,6 @@ $font-weight : 500;
 
 #alt-fact{
 page-gallery{
-    .back-button {
-        color : color($colors, secondary);
-    }
-
-    .back-button-ios {
-        ion-icon {
-            display: none;
-        }
-    }
 
     .scroll-content {
         overflow-y: hidden;

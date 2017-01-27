@@ -1,0 +1,30 @@
+ #alt-fact{
+   ion-grid {
+        padding: 0;
+        height: 100%;
+    }
+ 
+    ion-row {
+        flex: 1;
+        padding: 0;
+    }
+
+    ion-col {
+        padding :0;
+    }
+
+    @for $i from 1 through 100
+    {
+        ion-col {
+          &[width-#{$i}] {
+            flex: 0 0 $i + %;
+            max-width: $i + %;
+          }
+        }
+
+        ion-col[offset-#{$i}] 
+        {
+            margin-left: $i + %;
+        }
+    }
+ }
