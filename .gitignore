@@ -28,6 +28,8 @@ plugins/android.json
 plugins/ios.json
 www/
 $RECYCLE.BIN/
+apps/*.apk
+apps/*.ipa
 
 .DS_Store
 Thumbs.db
