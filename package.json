@@ -5,7 +5,7 @@
   "private": true,
   "scripts": {
     "clean": "ionic-app-scripts clean",
-    "watch" : "ionic-app-scripts watch",
+    "watch": "ionic-app-scripts watch",
     "build": "ionic-app-scripts build --dev",
     "build:prod": "ionic-app-scripts build --prod",
     "serve": "ionic-app-scripts serve --lab",
@@ -13,13 +13,14 @@
     "emulate": "ionic emulate ios --livereload",
     "deploy": "npm run build && ionic run android",
     "resources": "ionic resources",
-    "publish:apk": "npm run ionic:release:build && npm run publish:sign:apk && npm run publish:zipalign",
+    "publish:apk": "npm run clean:apps && npm run ionic:release:build && npm run publish:sign:apk && npm run publish:zipalign",
     "postpublish:apk": "npm run install:apk",
     "ionic:release:build": "npm run build:prod && ionic build android --release",
+    "clean:apps" : "rimraf apps/*.apk && rimraf apps/*.ipa",
     "publish:sign:apk": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore /Users/paulpatarinski/Desktop/privateKey/my-release-key.keystore ./platforms/android/build/outputs/apk/android-release-unsigned.apk -storepass password alias_name",
     "publish:zipalign": "zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk apps/alternative-facts.apk",
     "install:apk": "adb install apps/alternative-facts.apk",
-    "upload" : "cd www && ionic upload"
+    "upload": "cd www && ionic upload"
   },
   "dependencies": {
     "@angular/common": "2.2.1",
@@ -41,6 +42,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "1.0.0",
+    "rimraf": "^2.5.4",
     "typescript": "2.0.9"
   },
   "cordovaPlugins": [
