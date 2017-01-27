@@ -15,6 +15,7 @@ export class GalleryPage {
   deviceHeight : number;
   deviceWidth : number;
   loading : boolean;
+  randomImgUrl : string;
 
   constructor(public navCtrl: NavController, captionService: CaptionService, imgService: ImageService, platform : Platform) {
     this.loading = true;
@@ -29,7 +30,8 @@ export class GalleryPage {
 
   ionViewWillEnter() {
     this.loading = true;
-    
+    var randomId = new Date().getTime();
+    this.randomImgUrl = 'https://unsplash.it/' + this.deviceWidth + '/' + this.deviceHeight + '/?random&' + randomId;
     this._imgService.getRandomImage()
       .then((url) => this._captionService.getImgCaption(url))
       .then((caption) => this.setCaption(caption))
