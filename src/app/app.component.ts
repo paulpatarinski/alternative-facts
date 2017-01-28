@@ -20,6 +20,9 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       StatusBar.styleDefault();
       Splashscreen.hide();
+
+      if((<any>window).plugins && (<any>window).plugins.headerColor)
+        (<any>window).plugins.headerColor.tint("#c6d9db");
     });
   }
 }
