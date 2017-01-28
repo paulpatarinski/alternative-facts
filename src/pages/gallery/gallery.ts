@@ -4,6 +4,7 @@ import { CaptionService } from '../../providers/caption-service';
 import { ImageService } from '../../providers/image-service';
 import { QuotesService } from '../../providers/quotes-service';
 import { MixpanelService } from '../../providers/mixpanel-service';
+import { Network } from 'ionic-native';
 
 @Component({
   selector: 'page-gallery',
@@ -35,6 +36,12 @@ export class GalleryPage {
   }
 
   loadFact() {
+    if(Network.type === "none") {
+      this.randomImgUrl = "assets/error.svg"; 
+      this.caption = "No Network connection...reconnect & try again...";
+      return;
+    }
+
     this.caption = this.captionService.getRandomDefaultCaption();
     let loading = this.loadingController.create({
       spinner: 'circles',
@@ -44,6 +51,7 @@ export class GalleryPage {
 
     var randomId = new Date().getTime();
     this.randomImgUrl = 'https://unsplash.it/' + this.deviceWidth + '/' + this.deviceHeight + '/?random&' + randomId;
+    
     this.imgService.getRandomImage()
       .then((url) => this.captionService.getImgCaption(url))
       .then((caption) => this.setCaption(caption))
@@ -53,7 +61,7 @@ export class GalleryPage {
       })
       .catch((err) => {
         this.mixPanel.track(`Error => Failed to load fact, ${err}`);
-        console.log(err);
+        this.caption = "Uhhhh ohhh...error loading fact...";
         loading.dismiss();
       });
   }
