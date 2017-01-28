@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, Platform, LoadingController } from 'ionic-angular';
 import { CaptionService } from '../../providers/caption-service';
 import { ImageService } from '../../providers/image-service';
+import { QuotesService } from '../../providers/quotes-service';
 
 @Component({
   selector: 'page-gallery',
@@ -14,7 +15,7 @@ export class GalleryPage {
   deviceWidth: number;
   randomImgUrl: string;
 
-  constructor(public navCtrl: NavController, public captionService: CaptionService, public imgService: ImageService, platform: Platform, public loadingController: LoadingController) {
+  constructor(public navCtrl: NavController, public captionService: CaptionService, public imgService: ImageService, platform: Platform, public loadingController: LoadingController, public quotesService: QuotesService) {
     platform.ready().then(() => {
       this.deviceHeight = platform.height();
       this.deviceWidth = platform.width();
@@ -23,8 +24,8 @@ export class GalleryPage {
 
   ionViewWillEnter() {
     let loading = this.loadingController.create({
-       spinner: 'circles',
-      content: 'Loading Please Wait...'
+      spinner: 'circles',
+      content: this.quotesService.getTrumpQuote()
     });
     loading.present();
 
