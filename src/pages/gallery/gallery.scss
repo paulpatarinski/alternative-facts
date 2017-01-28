@@ -1,4 +1,4 @@
-$footer-height : 64px;
+$footer-height : 66px;
 $font-weight : 500;
 
 #alt-fact{
@@ -38,39 +38,22 @@ page-gallery{
 
 
     ion-footer {
-        height: $footer-height;
+        display: flex;
+        height:  $footer-height;
+        line-height: $footer-height / 2 - 5;
+        padding-top : 3px;
         background: color($colors, primary);
         opacity: 0.8;
-        text-align: center;
-        line-height: $footer-height;
         font-size: 20px;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
 
-        .spinner-container {
-            line-height: normal;
-            height : 100%;
-
-            span {
-                font-weight: $font-weight;
-            }
-
-            div {
-                 max-height:  $footer-height / 2;
-                line-height: $footer-height / 2;
-            }
-        }
-        
-        .caption
-         {
-            display: inline-block;
-            width: 100%;
-            max-height: 100%;
-            line-height: 24px;
-            vertical-align: middle;
-            font-weight: $font-weight;
-            overflow: hidden;
+        span {
             padding-left: 5px;
             padding-right : 5px;
-
+            max-height: 100%; 
+            
             &::first-letter {
                 text-transform: capitalize; 
             }
