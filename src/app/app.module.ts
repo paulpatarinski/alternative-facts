@@ -6,6 +6,7 @@ import { GalleryPage } from '../pages/gallery/gallery';
 import { AboutPage } from '../pages/about/about';
 import { CaptionService } from '../providers/caption-service';
 import { ImageService } from '../providers/image-service';
+import { AudioService } from '../providers/audio-service';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,6 @@ import { ImageService } from '../providers/image-service';
     GalleryPage,
     AboutPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, ImageService, CaptionService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, ImageService, CaptionService, AudioService]
 })
 export class AppModule {}
