@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
-
+import { MixpanelService } from '../providers/mixpanel-service';
 import { HomePage } from '../pages/home/home';
-
 
 @Component({
   templateUrl: 'app.html'
@@ -11,8 +10,10 @@ import { HomePage } from '../pages/home/home';
 export class MyApp {
   rootPage = HomePage;
 
-  constructor(platform: Platform) {
+  constructor(platform: Platform, mixpanel : MixpanelService) {
     platform.ready().then(() => {
+      mixpanel.init("8e61a5c5b1103da23c2088f2dc44a043");
+
       var statusBarOverlayWebView = platform.is('ios');
 
       StatusBar.overlaysWebView(statusBarOverlayWebView)

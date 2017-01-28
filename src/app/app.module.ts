@@ -8,6 +8,7 @@ import { CaptionService } from '../providers/caption-service';
 import { ImageService } from '../providers/image-service';
 import { AudioService } from '../providers/audio-service';
 import { QuotesService } from '../providers/quotes-service';
+import { MixpanelService } from '../providers/mixpanel-service';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,6 @@ import { QuotesService } from '../providers/quotes-service';
     GalleryPage,
     AboutPage
   ],
-  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, ImageService, CaptionService, AudioService, QuotesService]
+  providers: [{provide: ErrorHandler, useClass: IonicErrorHandler}, ImageService, CaptionService, AudioService, QuotesService, MixpanelService]
 })
 export class AppModule {}

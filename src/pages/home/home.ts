@@ -1,29 +1,30 @@
-import { Component , trigger, state, style, transition, animate} from '@angular/core';
-import { NavController} from 'ionic-angular';
+import { Component, trigger, state, style, transition, animate } from '@angular/core';
+import { NavController } from 'ionic-angular';
 import { GalleryPage } from '../gallery/gallery';
 import { AboutPage } from '../about/about';
 import { AudioService } from '../../providers/audio-service';
+import { MixpanelService } from '../../providers/mixpanel-service';
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
   animations: [
-     trigger('flyInBottomSlow', [
+    trigger('flyInBottomSlow', [
       state('in', style({
         transform: 'translate3d(0,0,0)'
       })),
       transition('void => *', [
-        style({transform: 'translate3d(0,2000px,0'}),
+        style({ transform: 'translate3d(0,2000px,0' }),
         animate('2000ms ease-in-out')
       ])
     ]),
-      //For the background detail
+    //For the background detail
     trigger('flyInBottomMedium', [
       state('in', style({
         transform: 'translate3d(0,0,0)'
       })),
       transition('void => *', [
-        style({transform: 'translate3d(0,2000px,0)'}),
+        style({ transform: 'translate3d(0,2000px,0)' }),
         animate('1500ms ease-in-out')
       ])
     ]),
@@ -33,7 +34,7 @@ import { AudioService } from '../../providers/audio-service';
         transform: 'translate3d(0,0,0)'
       })),
       transition('void => *', [
-        style({transform: 'translate3d(0,2000px,0)'}),
+        style({ transform: 'translate3d(0,2000px,0)' }),
         animate('1000ms ease-in-out')
       ])
     ]),
@@ -41,7 +42,7 @@ import { AudioService } from '../../providers/audio-service';
       state('flipped', style({
         transform: 'rotate(180deg)'
       })),
-        state('notFlipped', style({
+      state('notFlipped', style({
         transform: 'rotate(-360deg)'
       })),
       transition('* => flipped', animate('400ms ease-in')),
@@ -51,27 +52,36 @@ import { AudioService } from '../../providers/audio-service';
 })
 
 export class HomePage {
-  private _navCtrl : NavController;
-   flipState: any;
+  private _navCtrl: NavController;
+  flipState: any;
 
-  constructor(public navCtrl: NavController,public audioService : AudioService) {
+  constructor(public navCtrl: NavController, public audioService: AudioService, public mixPanel: MixpanelService) {
     this._navCtrl = navCtrl;
   }
 
-  navigateToGallery(){
-   this.navCtrl.push(GalleryPage);
+  navigateToGallery() {
+    this.mixPanel.track("Navigating to gallery");
+    this.navCtrl.push(GalleryPage);
   }
 
-   navigateToAbout(){
-   this.navCtrl.push(AboutPage);
+  navigateToAbout() {
+    this.mixPanel.track("Navigating to about");
+
+    this.navCtrl.push(AboutPage);
   }
 
   toggleFlip() {
+    this.mixPanel.track("Spinning to cow");
+
     this.audioService.playTrumpSound();
-    this.flipState = (this.flipState == 'notFlipped' || !this.flipState)  ? 'flipped' : 'notFlipped';
+    this.flipState = (this.flipState == 'notFlipped' || !this.flipState) ? 'flipped' : 'notFlipped';
   }
 
-   ngOnInit() {
-     this.audioService.preloadTrumpAudio();
+  ionViewWillEnter () {
+    this.mixPanel.track("Home Page loaded");
+  }
+
+  ngOnInit() {
+    this.audioService.preloadTrumpAudio();
   }
 }

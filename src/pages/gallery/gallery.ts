@@ -3,6 +3,7 @@ import { NavController, Platform, LoadingController } from 'ionic-angular';
 import { CaptionService } from '../../providers/caption-service';
 import { ImageService } from '../../providers/image-service';
 import { QuotesService } from '../../providers/quotes-service';
+import { MixpanelService } from '../../providers/mixpanel-service';
 
 @Component({
   selector: 'page-gallery',
@@ -15,7 +16,7 @@ export class GalleryPage {
   deviceWidth: number;
   randomImgUrl: string;
 
-  constructor(public navCtrl: NavController, public captionService: CaptionService, public imgService: ImageService, platform: Platform, public loadingController: LoadingController, public quotesService: QuotesService) {
+  constructor(public navCtrl: NavController, public captionService: CaptionService, public imgService: ImageService, platform: Platform, public loadingController: LoadingController, public quotesService: QuotesService, public mixPanel: MixpanelService) {
     platform.ready().then(() => {
       this.deviceHeight = platform.height();
       this.deviceWidth = platform.width();
@@ -23,6 +24,13 @@ export class GalleryPage {
   }
 
   ionViewWillEnter() {
+    this.mixPanel.track("Gallery Page Loaded");
+    this.mixPanel.track("Loading initial fact");
+    this.loadFact();
+  }
+
+  nextFact() {
+    this.mixPanel.track("Loading next fact");
     this.loadFact();
   }
 
@@ -41,8 +49,10 @@ export class GalleryPage {
       .then((caption) => this.setCaption(caption))
       .then(() => {
         loading.dismiss();
+        this.mixPanel.track("Fact successfully loaded");
       })
       .catch((err) => {
+        this.mixPanel.track(`Error => Failed to load fact, ${err}`);
         console.log(err);
         loading.dismiss();
       });
