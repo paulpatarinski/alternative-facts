@@ -3,19 +3,20 @@
     <ion-col>
       <ion-row>
         <ion-col offset-25 width-50>
-          <img src="assets/cow.svg" height="100%" width="100%">
+          <img src="assets/cow.svg" height="100%" width="100%" [@flip]="flipState"
+          (click)="toggleFlip()" [@flyInBottomFast]>
         </ion-col>
       </ion-row>
 
       <ion-row>
         <ion-col offset-15 width-70>
-          <img src="assets/logo_text.svg" height="100%" width="100%">
+          <img src="assets/logo_text.svg" height="100%" width="100%" [@flyInBottomMedium]>
         </ion-col>
       </ion-row>
 
       <ion-row class="unlearn-btn-container">
         <ion-col offset-33 width-33>
-          <button ion-button (click)="navigateToGallery();" color="secondary" full>Unlearn</button>
+          <button ion-button (click)="navigateToGallery();" color="secondary" full [@flyInBottomSlow]>Unlearn</button>
         </ion-col>
       </ion-row>
     </ion-col>
