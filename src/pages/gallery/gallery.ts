@@ -23,6 +23,11 @@ export class GalleryPage {
   }
 
   ionViewWillEnter() {
+    this.loadFact();
+  }
+
+  loadFact() {
+    this.caption = this.captionService.getRandomDefaultCaption();
     let loading = this.loadingController.create({
       spinner: 'circles',
       content: this.quotesService.getTrumpQuote()
