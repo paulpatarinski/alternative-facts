@@ -11,20 +11,6 @@ import 'rxjs/add/operator/catch';
 */
 @Injectable()
 export class CaptionService {
-  private defaultCaptions: Array<string> = [
-    "Alternative facts are free",
-    "The alternative to \"fact\" is \"fictions.\"",
-    "Alternative facts are not facts. They're falsehoods",
-    "Doublethink",
-    "post-truth",
-    "create a different understanding of reality",
-    "truthiness",
-    "#alternative facts",
-    "#SeanSpicerSays",
-    "#SeanSpicerFacts",
-    "#spicerfacts"
-  ];
-
   constructor(private http: Http) {
   }
 
@@ -52,9 +38,5 @@ export class CaptionService {
     }
 
     return "funny caption";
-  }
-
-  getRandomDefaultCaption(): string {
-    return this.defaultCaptions[Math.floor(Math.random() * this.defaultCaptions.length)];
   }
 }

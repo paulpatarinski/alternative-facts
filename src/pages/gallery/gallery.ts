@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, Platform, LoadingController } from 'ionic-angular';
-import { CaptionService } from '../../providers/caption-service';
-import { ImageService } from '../../providers/image-service';
 import { QuotesService } from '../../providers/quotes-service';
 import { MixpanelService } from '../../providers/mixpanel-service';
+import { CaptionsDB } from '../../providers/caption-db';
 import { Network } from 'ionic-native';
 
 @Component({
@@ -17,7 +16,7 @@ export class GalleryPage {
   deviceWidth: number;
   randomImgUrl: string;
 
-  constructor(public navCtrl: NavController, public captionService: CaptionService, public imgService: ImageService, platform: Platform, public loadingController: LoadingController, public quotesService: QuotesService, public mixPanel: MixpanelService) {
+  constructor(public navCtrl: NavController, public captionDB: CaptionsDB, platform: Platform, public loadingController: LoadingController, public quotesService: QuotesService, public mixPanel: MixpanelService) {
     platform.ready().then(() => {
       this.deviceHeight = platform.height();
       this.deviceWidth = platform.width();
@@ -36,13 +35,13 @@ export class GalleryPage {
   }
 
   loadFact() {
-    if(Network.type === "none") {
-      this.randomImgUrl = "assets/error.svg"; 
+    if (Network.type === "none") {
+      this.randomImgUrl = "assets/error.svg";
       this.caption = "No Network connection...reconnect & try again...";
       return;
     }
 
-    this.caption = this.captionService.getRandomDefaultCaption();
+    this.caption = this.captionDB.getRandomDefaultCaption();
     let loading = this.loadingController.create({
       spinner: 'circles',
       content: this.quotesService.getTrumpQuote()
@@ -51,19 +50,14 @@ export class GalleryPage {
 
     var randomId = new Date().getTime();
     this.randomImgUrl = 'https://unsplash.it/' + this.deviceWidth + '/' + this.deviceHeight + '/?random&' + randomId;
-    
-    this.imgService.getRandomImage()
-      .then((url) => this.captionService.getImgCaption(url))
-      .then((caption) => this.setCaption(caption))
-      .then(() => {
-        loading.dismiss();
-        this.mixPanel.track("Fact successfully loaded");
-      })
-      .catch((err) => {
-        this.mixPanel.track(`Error => Failed to load fact, ${err}`);
-        this.caption = "Uhhhh ohhh...error loading fact...";
-        loading.dismiss();
-      });
+
+    var caption = this.captionDB.getRandomCaption()
+    this.setCaption(caption);
+
+    setTimeout(() => {
+      loading.dismiss();
+      this.mixPanel.track("Fact successfully loaded");
+    }, 2000);
   }
 
   setCaption(txt) {
