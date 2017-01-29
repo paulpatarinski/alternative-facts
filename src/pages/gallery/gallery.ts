@@ -51,9 +51,8 @@ export class GalleryPage {
     var randomId = new Date().getTime();
     this.randomImgUrl = 'https://unsplash.it/' + this.deviceWidth + '/' + this.deviceHeight + '/?random&' + randomId;
 
-    this.caption = this.captionDB.getRandomCaption();
-
     setTimeout(() => {
+      this.caption = this.captionDB.getRandomCaption();
       loading.dismiss();
       this.mixPanel.track("Fact successfully loaded");
     }, 2000);
