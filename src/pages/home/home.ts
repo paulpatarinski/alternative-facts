@@ -1,5 +1,5 @@
 import { Component, trigger, state, style, transition, animate } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavController, Platform } from 'ionic-angular';
 import { GalleryPage } from '../gallery/gallery';
 import { AboutPage } from '../about/about';
 import { AudioService } from '../../providers/audio-service';
@@ -55,7 +55,7 @@ export class HomePage {
   private _navCtrl: NavController;
   flipState: any;
 
-  constructor(public navCtrl: NavController, public audioService: AudioService, public mixPanel: MixpanelService) {
+  constructor(public navCtrl: NavController, public audioService: AudioService, public mixPanel: MixpanelService, public platform: Platform) {
     this._navCtrl = navCtrl;
   }
 
@@ -77,11 +77,13 @@ export class HomePage {
     this.flipState = (this.flipState == 'notFlipped' || !this.flipState) ? 'flipped' : 'notFlipped';
   }
 
-  ionViewWillEnter () {
+  ionViewWillEnter() {
     this.mixPanel.track("Home Page loaded");
   }
 
   ngOnInit() {
-    this.audioService.preloadTrumpAudio();
+    this.platform.ready().then(() => {
+      this.audioService.preloadTrumpAudio();
+    });
   }
 }
