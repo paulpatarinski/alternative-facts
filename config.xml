@@ -94,4 +94,5 @@
     <plugin name="cordova-plugin-nativeaudio" spec="~3.0.7" />
     <plugin name="cordova-plugin-headercolor" spec="~1.0" />
     <plugin name="cordova-plugin-network-information" spec="~1.2.1" />
+    <plugin name="cordova-plugin-file-transfer" spec="~1.5.1" />
 </widget>
