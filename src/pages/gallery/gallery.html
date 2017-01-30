@@ -5,14 +5,14 @@
     </ion-title>
 
     <ion-buttons end>
-      <button ion-button clear color="secondary" (click)="nextFact()">
-        Next
+       <button ion-button icon-only color="secondary" (click)="share()">
+        <ion-icon name="share"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding [ngStyle]="{'background-image': 'url(' + randomImgUrl + ')'}" *ngIf="randomImgUrl">
+<ion-content padding [ngStyle]="{'background-image': 'url(' + randomImgUrl + ')'}" *ngIf="randomImgUrl" (click)="nextFact()">
 
 </ion-content>
 

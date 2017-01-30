@@ -4,7 +4,8 @@ import { QuotesService } from '../../providers/quotes-service';
 import { MixpanelService } from '../../providers/mixpanel-service';
 import { CaptionsDB } from '../../providers/caption-db';
 import { ImageService } from '../../providers/image-service';
-import { Network } from 'ionic-native';
+import { Network, SocialSharing, Transfer } from 'ionic-native';
+declare var cordova: any;
 
 @Component({
   selector: 'page-gallery',
@@ -16,7 +17,7 @@ export class GalleryPage {
 
   randomImgUrl: string;
 
-  constructor(public navCtrl: NavController, public captionDB: CaptionsDB, platform: Platform, public loadingController: LoadingController, public quotesService: QuotesService, public mixPanel: MixpanelService, public imageService : ImageService) {
+  constructor(public navCtrl: NavController, public captionDB: CaptionsDB, platform: Platform, public loadingController: LoadingController, public quotesService: QuotesService, public mixPanel: MixpanelService, public imageService: ImageService) {
   }
 
   ionViewWillEnter() {
@@ -52,5 +53,26 @@ export class GalleryPage {
       loading.dismiss();
       this.mixPanel.track("Fact successfully loaded");
     });
+  }
+
+  share() {
+    var fileTransfer = new Transfer();
+    var randomId = new Date().getTime();
+    var imgName = `img_${randomId}.png`;
+    var factNumber = Math.floor((Math.random() * 300) + 1);
+
+    fileTransfer.download(this.randomImgUrl, `${cordova.file.dataDirectory}${imgName}`)
+      .then((entry) => {
+        return entry.toURL();
+      })
+      .then((localImgUrl) => {
+        return SocialSharing.share(`Alternative Fact #${factNumber} ${this.caption}`, `Alternative Fact #${factNumber}`, localImgUrl, null);
+      })
+      .then(() => {
+        this.mixPanel.track(`Successfully shared image`);
+      })
+      .catch((err) => {
+        this.mixPanel.track(`Error sharing image => ${err}`);
+      });
   }
 }
