@@ -3,6 +3,7 @@ import { NavController, Platform, LoadingController } from 'ionic-angular';
 import { QuotesService } from '../../providers/quotes-service';
 import { MixpanelService } from '../../providers/mixpanel-service';
 import { CaptionsDB } from '../../providers/caption-db';
+import { ImageService } from '../../providers/image-service';
 import { Network } from 'ionic-native';
 
 @Component({
@@ -12,15 +13,10 @@ import { Network } from 'ionic-native';
 
 export class GalleryPage {
   caption: string;
-  deviceHeight: number;
-  deviceWidth: number;
+
   randomImgUrl: string;
 
-  constructor(public navCtrl: NavController, public captionDB: CaptionsDB, platform: Platform, public loadingController: LoadingController, public quotesService: QuotesService, public mixPanel: MixpanelService) {
-    platform.ready().then(() => {
-      this.deviceHeight = platform.height();
-      this.deviceWidth = platform.width();
-    });
+  constructor(public navCtrl: NavController, public captionDB: CaptionsDB, platform: Platform, public loadingController: LoadingController, public quotesService: QuotesService, public mixPanel: MixpanelService, public imageService : ImageService) {
   }
 
   ionViewWillEnter() {
@@ -48,13 +44,13 @@ export class GalleryPage {
     });
     loading.present();
 
-    var randomId = new Date().getTime();
-    this.randomImgUrl = 'https://unsplash.it/' + this.deviceWidth + '/' + this.deviceHeight + '/?random&' + randomId;
-
-    setTimeout(() => {
+    this.imageService.getRandomImage().then((imgUrl) => {
+      this.randomImgUrl = imgUrl;
+      return imgUrl;
+    }).then(() => {
       this.caption = this.captionDB.getRandomCaption();
       loading.dismiss();
       this.mixPanel.track("Fact successfully loaded");
-    }, 2000);
+    });
   }
 }
