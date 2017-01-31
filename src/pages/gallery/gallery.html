@@ -12,7 +12,7 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content padding [ngStyle]="{'background-image': 'url(' + randomImgUrl + ')'}" *ngIf="randomImgUrl" (click)="nextFact()">
+<ion-content padding [ngStyle]="{'background-image': 'url(' + randomImgUrl + ')'}" *ngIf="randomImgUrl" (click)="nextFact()" (swipeleft)="nextFact()" (swiperight)="nextFact()">
 
 </ion-content>
 
