@@ -66,7 +66,7 @@ export class GalleryPage {
         return entry.toURL();
       })
       .then((localImgUrl) => {
-        return SocialSharing.share(`Alternative Fact #${factNumber} ${this.caption}`, `Alternative Fact #${factNumber}`, localImgUrl, null);
+        return SocialSharing.share(`#AlternativeFact ${factNumber} ${this.caption}`, `Alternative Fact #${factNumber}`, localImgUrl, null);
       })
       .then(() => {
         this.mixPanel.track(`Successfully shared image`);
