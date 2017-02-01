@@ -22,7 +22,8 @@ import { CaptionsDB } from '../providers/caption-db';
     IonicModule.forRoot(MyApp, {
       platforms : {
         ios : {
-          backButtonText: 'Home'
+          backButtonText: 'Home',
+          swipeBackEnabled : false
         }
       }
     })
