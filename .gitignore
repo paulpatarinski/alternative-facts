@@ -30,6 +30,9 @@ www/
 $RECYCLE.BIN/
 apps/*.apk
 apps/*.ipa
+packages/
+bin/
+obj/
 
 .DS_Store
 Thumbs.db
