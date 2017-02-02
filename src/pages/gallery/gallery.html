@@ -5,14 +5,14 @@
     </ion-title>
 
     <ion-buttons end>
-       <button ion-button icon-only color="secondary" (click)="share()">
+       <button id="share-btn" ion-button icon-only color="secondary" (click)="share()">
         <ion-icon name="share"></ion-icon>
       </button>
     </ion-buttons>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding [ngStyle]="{'background-image': 'url(' + randomImgUrl + ')'}" *ngIf="randomImgUrl" (click)="nextFact()" (swipeleft)="nextFact()" (swiperight)="nextFact()">
+<ion-content id="random-img" padding [ngStyle]="{'background-image': 'url(' + randomImgUrl + ')'}" *ngIf="randomImgUrl" (click)="nextFact()" (swipeleft)="nextFact()" (swiperight)="nextFact()">
 
 </ion-content>
 
