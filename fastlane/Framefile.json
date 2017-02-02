@@ -1,0 +1,14 @@
+{
+  "device_frame_version": "latest",
+  "default": {
+    "title": {
+      "color": "#ed2024"
+    },
+    "background": "./background.jpg",
+    "padding": 45,
+    "show_complete_frame": false
+  },
+  "data": [
+   
+  ]
+}

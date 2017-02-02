@@ -11,12 +11,12 @@
     "serve": "ionic-app-scripts serve --lab",
     "serve:nolab": "ionic-app-scripts serve",
     "emulate": "ionic emulate android --livereload",
-    "emulate:ios": "ionic emulate ios --livereload",
+    "emulate:ios": "ionic emulate ios --target \"iPhone-6s-Plus, 10.2\"",
     "deploy": "npm run build && ionic run android",
     "deploy:ios": "npm run build && ionic run ios",
     "resources": "ionic resources",
     "publish:apk": "npm run clean:apps && npm run ionic:release:build:apk && npm run publish:sign:apk && npm run publish:zipalign",
-    "publish:ipa" : "npm run clean:apps && npm run ionic:release:build:ipa",
+    "publish:ipa": "npm run clean:apps && npm run ionic:release:build:ipa",
     "postpublish:apk": "npm run install:apk",
     "ionic:release:build:apk": "npm run build:prod && ionic build android --release",
     "ionic:release:build:ipa": "npm run build:prod && ionic build ios --release",
@@ -24,7 +24,10 @@
     "publish:sign:apk": "jarsigner -verbose -sigalg SHA1withRSA -digestalg SHA1 -keystore /Users/paulpatarinski/Desktop/privateKey/my-release-key.keystore ./platforms/android/build/outputs/apk/android-release-unsigned.apk -storepass password alias_name",
     "publish:zipalign": "zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk apps/alternative-facts.apk",
     "install:apk": "adb install apps/alternative-facts.apk",
-    "upload": "cd www && ionic upload"
+    "upload": "cd www && ionic upload",
+    "screenshots:create" : "npm run screenshots:copy && npm run screenshots:frame",
+    "screenshots:copy": "node scripts/copy-screenshots.js",
+    "screenshots:frame": "cd fastlane/screenshots && fastlane frameit"
   },
   "dependencies": {
     "@angular/common": "2.2.1",
@@ -46,6 +49,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "1.0.0",
+    "glob-copy": "^0.1.0",
     "mixpanel": "^0.6.0",
     "rimraf": "^2.5.4",
     "typescript": "2.0.9"
