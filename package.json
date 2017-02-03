@@ -25,7 +25,8 @@
     "publish:zipalign": "zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk apps/alternative-facts.apk",
     "install:apk": "adb install apps/alternative-facts.apk",
     "upload": "cd www && ionic upload",
-    "screenshots": "npm run screenshots:generate && npm run screenshots:copy && npm run screenshots:frame",
+    "screenshots": "npm run screenshots:generate && npm run screenshots:clean && npm run screenshots:copy && npm run screenshots:frame",
+    "screenshots:clean" : "rimraf fastlane/screenshots/en-US/*.png",
     "screenshots:generate" : "cd ui_tests && npm run test",
     "screenshots:copy": "node scripts/copy-screenshots.js",
     "screenshots:frame": "cd fastlane/screenshots && fastlane frameit"
