@@ -37,3 +37,4 @@ obj/
 .DS_Store
 Thumbs.db
 UserInterfaceState.xcuserstate
+TestResult.xml
