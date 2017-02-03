@@ -3,9 +3,9 @@
   "scripts": {
     "restore": "mono ./nuget.exe restore",
     "build": "xbuild ./ui_tests.csproj",
-    "test": "npm run restore && npm run build && npm run test:ipad",
-    "test:iphone": "json -I -f package.json -e 'this.config.phone=\"true\"' && mono ./packages/NUnit.Runners.2.6.4/tools/nunit-console.exe bin/Debug/ui_tests.dll",
-    "test:ipad": "json -I -f package.json -e 'this.config.phone=\"false\"' && mono ./packages/NUnit.Runners.2.6.4/tools/nunit-console.exe bin/Debug/ui_tests.dll"
+    "test": "npm run restore && npm run build && npm run test:iphone && npm run test:ipad",
+    "test:iphone": "json -I -f package.json -e 'this.config.phone=\"true\"' && mono ./packages/NUnit.Runners.2.6.4/tools/nunit-console.exe bin/Debug/ui_tests.dll -run:\"ui_tests.Tests(iOS)\"",
+    "test:ipad": "json -I -f package.json -e 'this.config.phone=\"false\"' && mono ./packages/NUnit.Runners.2.6.4/tools/nunit-console.exe bin/Debug/ui_tests.dll -run:\"ui_tests.Tests(iOS)\""
   },
   "config": {
     "app_bundle_path": "../../../platforms/ios/Build/emulator/Facts.app",
