@@ -4,7 +4,7 @@
     "title": {
       "color": "#ed2024"
     },
-    "background": "./background.jpg",
+    "background": "./background.png",
     "padding": 45,
     "show_complete_frame": false
   },
