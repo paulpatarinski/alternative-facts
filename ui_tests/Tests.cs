@@ -27,6 +27,7 @@ namespace ui_tests
         public void Generate_App_Screenshots()
         {
             app.WaitForElement(c => c.Css("#unlearn-btn"));
+            Thread.Sleep(TimeSpan.FromSeconds(2));
             TakeScreenshot("Home Page");
 
             if (AppInitializer.AppConfig.phone)
