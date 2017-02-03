@@ -1,5 +1,13 @@
 #alt-fact{
     page-about{
+       .top-section {
+           flex : 6.5;
+       }
+       
+       .bottom-section {
+           flex : 5;
+       }
+
        .cow-row {
            padding-top : 5%;
            padding-bottom : 15%;
