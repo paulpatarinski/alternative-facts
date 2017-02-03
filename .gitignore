@@ -41,3 +41,7 @@ TestResult.xml
 fastlane/screenshots/en-US/*.png
 Preview.html
 report.xml
+*.ipa
+*.cer
+*.dSYM.zip
+*.mobileprovision
