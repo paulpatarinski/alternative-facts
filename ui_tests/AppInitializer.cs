@@ -1,10 +1,6 @@
-﻿using System;
-using System.IO;
-using System.Linq;
+﻿using System.IO;
 using Xamarin.UITest;
-using Xamarin.UITest.Queries;
 using Newtonsoft.Json;
-using System.Dynamic;
 
 namespace ui_tests
 {
