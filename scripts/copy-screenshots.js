@@ -1,9 +1,9 @@
-var copy = require("glob-copy")
 var path = require('path');
 var projRoot = path.join(__dirname, '..');
+var copyfiles = require('copyfiles');
 var uiTestsBin = path.join(projRoot, 'ui_tests', 'bin', 'Debug');
-var destination = path.join(projRoot, 'fastlane','screenshots');
+var destination = path.join(projRoot, 'fastlane','screenshots', 'en-US');
 
-copy(uiTestsBin + "/*.png",destination, function (er, files) {
+copyfiles([uiTestsBin + "/*.png",destination], true, function (er, files) {
     console.log(files);
 });

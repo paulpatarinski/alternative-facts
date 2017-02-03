@@ -25,7 +25,7 @@
     "publish:zipalign": "zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk apps/alternative-facts.apk",
     "install:apk": "adb install apps/alternative-facts.apk",
     "upload": "cd www && ionic upload",
-    "screenshots:create" : "npm run screenshots:copy && npm run screenshots:frame",
+    "screenshots:create": "npm run screenshots:copy && npm run screenshots:frame",
     "screenshots:copy": "node scripts/copy-screenshots.js",
     "screenshots:frame": "cd fastlane/screenshots && fastlane frameit"
   },
@@ -49,6 +49,7 @@
   },
   "devDependencies": {
     "@ionic/app-scripts": "1.0.0",
+    "copyfiles": "^1.2.0",
     "glob-copy": "^0.1.0",
     "mixpanel": "^0.6.0",
     "rimraf": "^2.5.4",
