@@ -40,19 +40,9 @@ namespace ui_tests
             TakeScreenshot("Gallery Fact 1");
 
             app.Tap(c => c.Css("#random-img"));
-            Thread.Sleep(TimeSpan.FromSeconds(2));
-            TakeScreenshot("Gallery Fact 2");
-            app.Tap(c => c.Css("#random-img"));
-            Thread.Sleep(TimeSpan.FromSeconds(2));
-
-            app.Tap(c => c.Css("#random-img"));
             TakeScreenshot("Quote 1");
 
             Thread.Sleep(TimeSpan.FromSeconds(2));
-            app.Tap(c => c.Css("#random-img"));
-            TakeScreenshot("Quote 2");
-
-            Thread.Sleep(TimeSpan.FromSeconds(1));
 
             if (AppInitializer.AppConfig.phone)
                 app.Tap(c => c.Css("#share-btn"));
