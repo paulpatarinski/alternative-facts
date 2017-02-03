@@ -11,7 +11,7 @@
     "serve": "ionic-app-scripts serve --lab",
     "serve:nolab": "ionic-app-scripts serve",
     "emulate": "ionic emulate android --livereload",
-    "emulate:ios": "ionic emulate ios --target \"iPhone-6s-Plus, 10.2\"",
+    "emulate:ios": "npm run build && ionic emulate ios --target \"iPhone-6-Plus, 10.2\"",
     "deploy": "npm run build && ionic run android",
     "deploy:ios": "npm run build && ionic run ios",
     "resources": "ionic resources",
@@ -25,10 +25,10 @@
     "publish:zipalign": "zipalign -v 4 platforms/android/build/outputs/apk/android-release-unsigned.apk apps/alternative-facts.apk",
     "install:apk": "adb install apps/alternative-facts.apk",
     "upload": "cd www && ionic upload",
-    "screenshots:create": "npm run screenshots:copy && npm run screenshots:frame",
+    "screenshots": "npm run screenshots:copy && npm run screenshots:frame",
+    "screenshots:generate" : "cd ui_tests && npm run test",
     "screenshots:copy": "node scripts/copy-screenshots.js",
-    "screenshots:frame": "cd fastlane/screenshots && fastlane frameit",
-    "uitests:run" : "cd ui_tests && npm run test"
+    "screenshots:frame": "cd fastlane/screenshots && fastlane frameit"
   },
   "dependencies": {
     "@angular/common": "2.2.1",
