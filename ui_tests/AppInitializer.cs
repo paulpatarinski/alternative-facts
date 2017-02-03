@@ -31,12 +31,17 @@ namespace ui_tests
 					.StartApp();
 			}
 
+			//iPhone 6 plus
+			// var deviceId = "00673C92-BEDA-445B-936E-5D811D6635EB";
+			//iPad Pro 12.9
+			var deviceId = "E958A769-F4AD-49F0-BA01-BED71D7536F6";
+
 			return ConfigureApp
 				.iOS
 				// TODO: Update this path to point to your iOS app and uncomment the
 				// code if the app is not included in the solution.
 				.AppBundle("../../../platforms/ios/Build/emulator/Facts.app")
-				.DeviceIdentifier("00673C92-BEDA-445B-936E-5D811D6635EB")
+				.DeviceIdentifier(deviceId)
 				.EnableLocalScreenshots()
 				.StartApp();
 		}

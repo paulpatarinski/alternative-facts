@@ -27,7 +27,8 @@
     "upload": "cd www && ionic upload",
     "screenshots:create": "npm run screenshots:copy && npm run screenshots:frame",
     "screenshots:copy": "node scripts/copy-screenshots.js",
-    "screenshots:frame": "cd fastlane/screenshots && fastlane frameit"
+    "screenshots:frame": "cd fastlane/screenshots && fastlane frameit",
+    "uitests:run" : "cd ui_tests && npm run test"
   },
   "dependencies": {
     "@angular/common": "2.2.1",

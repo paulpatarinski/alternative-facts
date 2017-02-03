@@ -1,0 +1,9 @@
+{
+  "name": "app-ui-tests",
+  "scripts": {
+    "restore" : "mono ./nuget.exe restore",
+    "build" : "xbuild ./ui_tests.csproj",
+    "test" : "npm run restore && npm run build && npm run test:iphone",
+    "test:iphone" : "mono ./packages/NUnit.Runners.2.6.4/tools/nunit-console.exe bin/Debug/ui_tests.dll"
+  }
+}
