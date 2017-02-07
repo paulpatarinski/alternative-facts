@@ -23,7 +23,7 @@ platform :ios do
     app_identifier = "com.simpleproductionsinc.alternativefacts"
 
     # Compile the ionic app
-    sh("npm run ionic:release:build:ipa")
+    sh("npm run build:prod && ionic build ios --release")
     # Get certificate
     cert
     # Get provisioning profile
@@ -38,7 +38,16 @@ platform :ios do
     gym(
       scheme: app_name_sanitized,
       project: ios_project_path,
-      export_method: 'app-store'
+      export_method: 'app-store',
+      output_directory: './apps'
+    )
+    sh("npm run screenshots")
+    deliver(
+      force: true,
+      submit_for_review: true,
+      ipa: './apps/Facts.ipa',
+      automatic_release: true,
+      release_notes: {'default' => 'UI Updates', 'en-US' => 'UI Updates'}
     )
   end
 end
